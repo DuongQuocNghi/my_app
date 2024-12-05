@@ -4,179 +4,127 @@ enum ControllerStyle { light, dart }
 var openLogApp = 0;
 
 class NavigationBarView extends StatelessWidget {
-  NavigationBarView({super.key,
+  const NavigationBarView({super.key,
+    this.controllerStyle = ControllerStyle.light,
     this.titleText,
     this.titleWidget,
-    this.backgroundColor = Colors.white,
+    this.backgroundColor,
     this.backgroundImage,
-    this.controllerStyle = ControllerStyle.dart,
     this.actionRight,
     this.actionLeft,
-    this.marginTop,
-    this.marginBottom,
-    this.marginLeft,
-    this.marginRight,
-    this.heightToolBar,
-    this.paddingTop,
-    this.paddingBottom,
-    this.paddingLeft,
-    this.paddingRight,
-    this.bottom,
-    this.isUnderline = false,
-    this.onPressedBack,
-    this.iconBack = Icons.arrow_back_rounded,
-    this.iconBackSize = 20,
-    this.canPressedBack = true,
-    this.titleAlignment = Alignment.center,
-    this.titleHorizontalPadding = 50,
-    titleLogo = true,
+    this.bottomView,
+    this.underline,
+    this.iconBack,
+    this.titleAlignment,
+    this.titlePadding,
   });
 
-  final double titleHorizontalPadding;
-  final Alignment titleAlignment;
+  final EdgeInsets? titlePadding;
+  final Alignment? titleAlignment;
+  final Widget? titleWidget;
   final String? titleText;
-  Widget? titleWidget;
   final Color? backgroundColor;
   final DecorationImage? backgroundImage;
   final ControllerStyle controllerStyle;
   final List<Widget>? actionRight;
   final List<Widget>? actionLeft;
-  final double? heightToolBar;
-  final double? marginTop;
-  final double? marginBottom;
-  final double? marginLeft;
-  final double? marginRight;
-  final double? paddingTop;
-  final double? paddingBottom;
-  final double? paddingLeft;
-  final double? paddingRight;
-  final List<Widget>? bottom;
-  final bool isUnderline;
-  final VoidCallback? onPressedBack;
+  final List<Widget>? bottomView;
+  final bool? underline;
   final IconData? iconBack;
-  final double iconBackSize;
-  final bool canPressedBack;
 
   @override
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-          color: backgroundColor,
+          color: backgroundColor ?? (controllerStyle == ControllerStyle.light ? Colors.white : Colors.black),
           image: backgroundImage,
         ),
         child: Padding(
-        padding: EdgeInsets.only(
-            top: marginTop ?? MediaQuery.of(context).padding.top,
-            bottom: marginBottom ?? 0,
-            left: marginLeft ?? 0,
-            right: marginRight ?? 0
-        ),
-        child: _bottomView(context),
-      )
+          padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top,),
+          child: _bottomView(context),
+        )
     );
   }
 
   Widget _bottomView(BuildContext context){
-    return Container(
-      color: backgroundColor,
-      child: Column(
-        children: [
-          _buildToolBar(context),
-          if(bottom?.isNotEmpty ?? false)
-            ...bottom ?? [],
-        ],
-      ),
+    return Column(
+      children: [
+        _buildToolBar(context),
+        if(bottomView?.isNotEmpty ?? false)
+          ...bottomView ?? [],
+      ],
     );
   }
 
   Widget _buildToolBar(BuildContext context){
     return Column(
       children: [
-        Padding(
-          padding: EdgeInsets.only(
-              top: paddingTop ?? 0,
-              bottom: paddingBottom ?? 0,
-              left: paddingLeft ?? 0,
-              right: paddingRight ?? 0
-          ),
-          child: SizedBox(
-              height: heightToolBar??kToolbarHeight,
-              child: Stack(
-                children: [
-                  Center(
-                    child: Row(
-                      children: actionLeft ?? [
-                        IconButton(
-                          padding: EdgeInsets.zero,
-                          icon: Icon(iconBack,
-                            color: controllerStyle == ControllerStyle.light
-                                ? Colors.white
-                                : Colors.black,
-                            size: iconBackSize,
-                          ),
-                          onPressed: () {
-                            if(canPressedBack){
-                              Navigator.of(context).pop();
-                            }
-                            onPressedBack?.call();
-                          },
+        SizedBox(
+            height: kToolbarHeight,
+            child: Stack(
+              children: [
+                Center(
+                  child: Row(
+                    children: actionLeft ?? [
+                      IconButton(
+                        padding: EdgeInsets.zero,
+                        icon: Icon(iconBack ?? Icons.arrow_back_ios,
+                          color: controllerStyle == ControllerStyle.light ? Colors.black : Colors.white,
+                          size: 20,
                         ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: titleHorizontalPadding),
-                    child: GestureDetector(
-                      onTap: (){
-                        Navigator.of(context).popUntil((route){
-                          return route.isFirst;
-                        });
-                      },
-                      onLongPress: (){
-                        if(openLogApp == 5){
-                          // Navigator.of(context).push(LogAppPage.route());
-                        }
-                      },
-                      child: Align(
-                        alignment: titleAlignment,
-                          child: titleWidget ?? Text(titleText??'',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              color: controllerStyle == ControllerStyle.light ? Colors.white : Colors.black
-                            ),
-                          )
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
                       ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: titlePadding ?? const EdgeInsets.symmetric(horizontal: 50),
+                  child: GestureDetector(
+                    onTap: (){
+                      Navigator.of(context).popUntil((route){
+                        return route.isFirst;
+                      });
+                    },
+                    onLongPress: (){
+                      if(openLogApp == 5){
+                        // Navigator.of(context).push(LogAppPage.route());
+                      }
+                    },
+                    child: Align(
+                      alignment: titleAlignment ?? Alignment.center,
+                        child: titleWidget ?? Text(titleText??'',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: controllerStyle == ControllerStyle.light ? Colors.black : Colors.white
+                          ),
+                        )
                     ),
                   ),
-                  Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: actionRight ?? [],
-                      )
-                  )
-                ],
-              )
-          ),
+                ),
+                Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: actionRight ?? [],
+                    )
+                )
+              ],
+            )
         ),
-        if (isUnderline)
+        if (underline ?? true)
           _buildLineView(),
       ],
     );
   }
 
-  Widget _buildLineView({double height = 1, double width = double.infinity, Color color = Colors.grey, double borderRadius = 0}){
-    return SizedBox(
-      height: height,
-      width: width,
-      child: DecoratedBox(
-          decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(borderRadius)
-          )
-      ),
+  Widget _buildLineView(){
+    return Container(
+      height: 1,
+      color: Colors.grey.shade300,
     );
   }
 

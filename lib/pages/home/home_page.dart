@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_app/commons/views/navigation_bar_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:my_app/local/private_key.dart';
 import 'package:my_app/pages/home/bloc/home_bloc.dart';
 import 'package:my_app/pages/home/bloc/home_event.dart';
 import 'package:my_app/pages/home/bloc/home_state.dart';
@@ -60,23 +61,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildBody(BuildContext context, HomeState state){
-    return Expanded(
-      child: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.5),
-                  borderRadius: const BorderRadius.all(Radius.circular(16)),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
+    return const Center(
+      child: Text(PrivateKey.KeyA),
     );
   }
 

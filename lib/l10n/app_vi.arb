@@ -1,7 +1,11 @@
 {
+  "language_app": "Tiếng việt",
+
   "change_language": "Thay đổi ngôn ngữ",
   "coming_soon": "Sắp ra mắt",
   "change_theme": "Thay đổi giao diện",
+  "change_theme": "Thay đổi giao diện",
+  "language": "Ngôn ngữ",
 
   "hello": "Xin chào"
 }

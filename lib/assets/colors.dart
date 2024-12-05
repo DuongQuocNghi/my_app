@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-abstract class ApColors {
+abstract class AppColor {
   // HIGHLIGHT
   Color highlight_1 = const Color(0x00000000);
   Color highlight_2 = const Color(0x00000000);
@@ -60,8 +60,8 @@ abstract class ApColors {
   Color onPrimaryLight = const Color(0x00000000);
 }
 
-class ApThemeLight extends ApColors {
-  ApThemeLight(){
+class AppLightTheme extends AppColor {
+  AppLightTheme(){
     highlight_1 = const Color(0xffFFFFFF);
     highlight_2 = const Color(0xffFFF9E9);
     highlight_3 = const Color(0xffFFECBA);
@@ -118,8 +118,8 @@ class ApThemeLight extends ApColors {
   }
 }
 
-class ApThemeDark extends ApColors {
-  ApThemeDark(){
+class AppDarkTheme extends AppColor {
+  AppDarkTheme(){
     highlight_1 = const Color(0xffFFFFFF);
     highlight_2 = const Color(0xffFFF9E9).withOpacity(0.2);
     highlight_3 = const Color(0xffFFECBA).withOpacity(0.3);

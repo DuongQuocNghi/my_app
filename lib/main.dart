@@ -12,12 +12,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: apName,
+    return const MaterialApp(
+      title: AppName,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: Locale(apLanguage),
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 }

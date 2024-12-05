@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_app/commons/views/navigation_bar_view.dart';
+import 'package:my_app/local/local.dart';
 import 'package:my_app/pages/demo/bloc/demo_bloc.dart';
 import 'package:my_app/pages/demo/bloc/demo_event.dart';
 import 'package:my_app/pages/demo/bloc/demo_state.dart';
@@ -60,29 +61,33 @@ class _DemoPageState extends State<DemoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => DemoBloc()..add(DemoInitial()),
-      child: Scaffold(
-        body: BlocBuilder<DemoBloc, DemoState>(
-        // List load more
-        // body: BlocConsumer<DemoBloc, DemoState>(
-        //     listener: (context, state){
-        //     contextPage = context;
-        //   },
-          builder: (context, state) {
-            return Column(
-              children: [
-                _buildHeader(),
-                _buildBody(context, state)
-              ],
-            );
-          },
-        )
+    return Localizations.override(
+      context: context,
+      locale: Locale(AppLanguage),
+      child: BlocProvider(
+        create: (_) => DemoBloc()..add(DemoInitial()),
+        child: Scaffold(
+          body: BlocBuilder<DemoBloc, DemoState>(
+          // List load more
+          // body: BlocConsumer<DemoBloc, DemoState>(
+          //     listener: (context, state){
+          //     contextPage = context;
+          //   },
+            builder: (context, state) {
+              return Column(
+                children: [
+                  _buildHeader(context, state),
+                  _buildBody(context, state)
+                ],
+              );
+            },
+          )
+        ),
       ),
     );
   }
 
-  Widget _buildHeader(){
+  Widget _buildHeader(BuildContext context, DemoState state){
     return Column(
       children: [
         NavigationBarView(

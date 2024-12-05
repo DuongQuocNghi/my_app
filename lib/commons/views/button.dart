@@ -5,10 +5,10 @@ import 'package:my_app/assets/text_styles.dart';
 import 'package:my_app/commons/supports/gradient_border.dart';
 import 'package:my_app/local/local.dart';
 
-enum ApBorderType { solid, dashed }
+enum AppBorderType { none, dashed }
 
-class ApButton extends StatefulWidget implements ApButtons {
-  ApButton({
+class AppButton extends StatefulWidget implements AppButtons {
+  AppButton({
     super.key,
     this.title,
     this.titleStyle,
@@ -19,7 +19,7 @@ class ApButton extends StatefulWidget implements ApButtons {
     this.onPressed,
     this.borderRadius = 8,
     this.border,
-    this.borderType = ApBorderType.solid,
+    this.borderType = AppBorderType.none,
     this.backroundColor = Colors.white,
     this.backroundColorPressed,
     this.padding,
@@ -47,7 +47,7 @@ class ApButton extends StatefulWidget implements ApButtons {
 
   double borderRadius;
   BoxBorder? border;
-  ApBorderType borderType;
+  AppBorderType borderType;
 
   double? width;
   double? height;
@@ -64,40 +64,40 @@ class ApButton extends StatefulWidget implements ApButtons {
 
   @override
   Widget outline() {
-    border = GradientBorder(borderGradient: LinearGradient(colors: apColors.primaryGradient));
-    titleStyle = ApTextStyles.body_highlight;
-    backroundColor = apColors.background;
-    backroundColorPressed = apColors.primary_0;
+    border = GradientBorder(borderGradient: LinearGradient(colors: AppColors.primaryGradient));
+    titleStyle = AppTextStyles.body_highlight.copyWith(color: AppColors.onBackground_9);
+    backroundColor = AppColors.background;
+    backroundColorPressed = AppColors.primary_0;
     return this;
   }
 
   @override
   Widget primary() {
-    titleStyle = ApTextStyles.body_highlight;
-    backroundColor = apColors.primary_3;
-    backroundColorPressed = apColors.primary_6;
+    titleStyle = AppTextStyles.body_highlight.copyWith(color: AppColors.onPrimaryDark);
+    backroundColor = AppColors.primary_3;
+    backroundColorPressed = AppColors.primary_6;
     return this;
   }
 
   @override
   Widget secondary() {
-    titleStyle = ApTextStyles.body_highlight;
-    backroundColor = apColors.onBackground_1;
-    backroundColorPressed = apColors.onBackground_3;
+    titleStyle = AppTextStyles.body_highlight.copyWith(color: AppColors.onBackground_9);
+    backroundColor = AppColors.onBackground_1;
+    backroundColorPressed = AppColors.onBackground_3;
     return this;
   }
 
   @override
   Widget subtle() {
-    titleStyle = ApTextStyles.body_highlight;
-    backroundColor = apColors.background;
-    backroundColorPressed = apColors.onBackground_1;
+    titleStyle = AppTextStyles.body_highlight.copyWith(color: AppColors.onBackground_9);
+    backroundColor = AppColors.background;
+    backroundColorPressed = AppColors.onBackground_1;
     return this;
   }
 
 }
 
-class _ApButton extends State<ApButton> {
+class _ApButton extends State<AppButton> {
   bool _onTap = false;
 
   @override
@@ -106,7 +106,7 @@ class _ApButton extends State<ApButton> {
       absorbing: widget.disabled,
       child: Opacity(
         opacity:widget.disabled ? 0.3:1,
-        child: widget.borderType == ApBorderType.dashed ? DottedBorder(
+        child: widget.borderType == AppBorderType.dashed ? DottedBorder(
             padding: EdgeInsets.zero,
             color: widget.border?.top.color ?? Colors.transparent,
             strokeWidth: widget.border?.top.width ?? 0,
@@ -140,7 +140,7 @@ class _ApButton extends State<ApButton> {
               crossAxisAlignment: widget.titleAlignment,
               children: [
                 Padding(
-                  padding: widget.padding ?? const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+                  padding: widget.padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
                   child: Text.rich(
                     TextSpan(
                       children: [

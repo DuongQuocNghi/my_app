@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_app/commons/views/button.dart';
 import 'package:my_app/commons/views/navigation_bar_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:my_app/local/local.dart';
 import 'package:my_app/pages/change_language/bloc/change_language_bloc.dart';
 import 'package:my_app/pages/change_language/bloc/change_language_event.dart';
 import 'package:my_app/pages/change_language/bloc/change_language_state.dart';
@@ -32,24 +33,28 @@ class _ChangeLanguagePageState extends State<ChangeLanguagePage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => ChangeLanguageBloc()..add(ChangeLanguageInitial()),
-      child: Scaffold(
-        body: BlocBuilder<ChangeLanguageBloc, ChangeLanguageState>(
-          builder: (context, state) {
-            return Column(
-              children: [
-                _buildHeader(),
-                _buildBody(context, state)
-              ],
-            );
-          },
-        )
+    return Localizations.override(
+      context: context,
+      locale: Locale(AppLanguage),
+      child: BlocProvider(
+        create: (_) => ChangeLanguageBloc()..add(ChangeLanguageInitial()),
+        child: Scaffold(
+          body: BlocBuilder<ChangeLanguageBloc, ChangeLanguageState>(
+            builder: (context, state) {
+              return Column(
+                children: [
+                  _buildHeader(context, state),
+                  _buildBody(context, state)
+                ],
+              );
+            },
+          )
+        ),
       ),
     );
   }
 
-  Widget _buildHeader(){
+  Widget _buildHeader(BuildContext context, ChangeLanguageState state){
     return Column(
       children: [
         NavigationBarView(
@@ -62,10 +67,28 @@ class _ChangeLanguagePageState extends State<ChangeLanguagePage> {
   Widget _buildBody(BuildContext context, ChangeLanguageState state){
     return Expanded(
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            ApButton(title: 'asd',).outline()
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            children: [
+              const SizedBox(height: 16,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(AppLocalizations.of(context)?.language ?? ''),
+                  AppButton(
+                    title: AppLocalizations.of(context)?.language_app,
+                    onPressed: (){
+                      setState(() {
+                        // AppLanguage = 'vi';
+                        AppLanguage = 'en';
+                      });
+                    },
+                  ).outline()
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

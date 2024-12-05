@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-abstract class ApButtons{
+abstract class AppButtons{
   Widget primary();
   Widget secondary();
   Widget subtle();

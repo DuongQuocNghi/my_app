@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_app/commons/supports/alert.dart';
 import 'package:my_app/commons/views/navigation_bar_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:my_app/local/local.dart';
 import 'package:my_app/pages/change_language/change_language_page.dart';
 import 'package:my_app/pages/home/bloc/home_bloc.dart';
 import 'package:my_app/pages/home/bloc/home_event.dart';
@@ -33,24 +34,28 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => HomeBloc()..add(HomeInitial()),
-      child: Scaffold(
-        body: BlocBuilder<HomeBloc, HomeState>(
-          builder: (context, state) {
-            return Column(
-              children: [
-                _buildHeader(),
-                _buildBody(context, state)
-              ],
-            );
-          },
-        )
+    return Localizations.override(
+      context: context,
+      locale: Locale(AppLanguage),
+      child: BlocProvider(
+        create: (_) => HomeBloc()..add(HomeInitial()),
+        child: Scaffold(
+          body: BlocBuilder<HomeBloc, HomeState>(
+            builder: (context, state) {
+              return Column(
+                children: [
+                  _buildHeader(context, state),
+                  _buildBody(context, state)
+                ],
+              );
+            },
+          )
+        ),
       ),
     );
   }
 
-  Widget _buildHeader(){
+  Widget _buildHeader(BuildContext context, HomeState state){
     return Column(
       children: [
         NavigationBarView(
@@ -67,7 +72,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             _buildItem(title: AppLocalizations.of(context)?.change_language ?? '', onTap: (){
-              Navigator.of(context).push(ChangeLanguagePage.route());
+              Navigator.of(context).push(ChangeLanguagePage.route()).then((v)=> setState(() {}));
             }),
             _buildItem(title: AppLocalizations.of(context)?.change_theme ?? '',),
           ],
@@ -80,7 +85,7 @@ class _HomePageState extends State<HomePage> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
       child: GestureDetector(
-        onTap: onTap ?? ()=> ApAlert.showWarningToast(AppLocalizations.of(context)?.coming_soon ?? ''),
+        onTap: onTap ?? ()=> AppAlert.showWarningToast(AppLocalizations.of(context)?.coming_soon ?? ''),
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(

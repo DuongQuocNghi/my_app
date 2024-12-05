@@ -1,18 +1,18 @@
 import 'package:equatable/equatable.dart';
 
-enum HomeStatus { initial, success, failure, loading }
+enum ChangeLanguageStatus { initial, success, failure, loading }
 
-class HomeState extends Equatable {
-  const HomeState({
-    this.status = HomeStatus.initial,
+class ChangeLanguageState extends Equatable {
+  const ChangeLanguageState({
+    this.status = ChangeLanguageStatus.initial,
   });
 
-  final HomeStatus status;
+  final ChangeLanguageStatus status;
 
-  HomeState copyWith({
-    HomeStatus? status,
+  ChangeLanguageState copyWith({
+    ChangeLanguageStatus? status,
   }) {
-    return HomeState(
+    return ChangeLanguageState(
       status: status ?? this.status,
     );
   }

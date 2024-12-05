@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_app/commons/supports/alert.dart';
 import 'package:my_app/commons/views/navigation_bar_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:my_app/local/private_key.dart';
+import 'package:my_app/pages/change_language/change_language_page.dart';
 import 'package:my_app/pages/home/bloc/home_bloc.dart';
 import 'package:my_app/pages/home/bloc/home_event.dart';
 import 'package:my_app/pages/home/bloc/home_state.dart';
@@ -61,8 +62,43 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildBody(BuildContext context, HomeState state){
-    return const Center(
-      child: Text(PrivateKey.KeyA),
+    return Expanded(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            _buildItem(title: AppLocalizations.of(context)?.change_language ?? '', onTap: (){
+              Navigator.of(context).push(ChangeLanguagePage.route());
+            }),
+            _buildItem(title: AppLocalizations.of(context)?.change_theme ?? '',),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildItem({required String title, Function()? onTap}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+      child: GestureDetector(
+        onTap: onTap ?? ()=> ApAlert.showWarningToast(AppLocalizations.of(context)?.coming_soon ?? ''),
+        child: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8)
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(title),
+                const Icon(Icons.arrow_forward_ios, size: 16,),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 

@@ -87,8 +87,6 @@ class _DemoPageState extends State<DemoPage> {
       children: [
         NavigationBarView(
           titleText: AppLocalizations.of(context)?.hello,
-          controllerStyle: ControllerStyle.dart,
-          backgroundColor: Colors.white,
         ),
       ],
     );

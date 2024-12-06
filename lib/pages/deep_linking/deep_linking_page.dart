@@ -7,12 +7,14 @@ import 'package:my_app/pages/deep_linking/bloc/deep_linking_bloc.dart';
 import 'package:my_app/pages/deep_linking/bloc/deep_linking_event.dart';
 import 'package:my_app/pages/deep_linking/bloc/deep_linking_state.dart';
 
+// https://docs.flutter.dev/ui/navigation/deep-linking
 class DeepLinkingPage extends StatefulWidget {
   static Route route() {
-    return MaterialPageRoute(builder: (context) => const DeepLinkingPage());
+    return MaterialPageRoute(builder: (context) => DeepLinkingPage());
   }
 
-  const DeepLinkingPage({super.key,});
+  DeepLinkingPage({super.key, this.data});
+  String? data;
 
   @override
   State<StatefulWidget> createState() => _DeepLinkingPageState();
@@ -65,11 +67,11 @@ class _DeepLinkingPageState extends State<DeepLinkingPage> {
   }
 
   Widget _buildBody(BuildContext context, DeepLinkingState state){
-    return const Expanded(
+    return Expanded(
       child: SingleChildScrollView(
         child: Column(
           children: [
-
+            Text(widget.data ?? ''),
           ],
         ),
       ),

@@ -67,6 +67,7 @@ class _DemoPageState extends State<DemoPage> {
       child: BlocProvider(
         create: (_) => DemoBloc()..add(DemoInitial()),
         child: Scaffold(
+          backgroundColor: AppColors.background,
           body: BlocBuilder<DemoBloc, DemoState>(
           // List load more
           // body: BlocConsumer<DemoBloc, DemoState>(

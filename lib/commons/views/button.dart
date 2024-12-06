@@ -1,6 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/assets/buttons.dart';
+import 'package:my_app/assets/colors.dart';
 import 'package:my_app/assets/text_styles.dart';
 import 'package:my_app/commons/supports/gradient_border.dart';
 import 'package:my_app/local/local.dart';
@@ -63,35 +64,35 @@ class AppButton extends StatefulWidget implements AppButtons {
   State<StatefulWidget> createState() => _ApButton();
 
   @override
-  Widget outline() {
-    border = GradientBorder(borderGradient: LinearGradient(colors: AppColors.primaryGradient));
-    titleStyle = AppTextStyles.body_highlight.copyWith(color: AppColors.onBackground_9);
-    backroundColor = AppColors.background;
-    backroundColorPressed = AppColors.primary_0;
+  Widget outline({AppColor? apColor}) {
+    border = GradientBorder(borderGradient: LinearGradient(colors: (apColor ?? AppColors).primaryGradient));
+    titleStyle = AppTextStyles.body_highlight.copyWith(color: (apColor ?? AppColors).onBackground_9);
+    backroundColor = (apColor ?? AppColors).background;
+    backroundColorPressed = (apColor ?? AppColors).primary_0;
     return this;
   }
 
   @override
-  Widget primary() {
-    titleStyle = AppTextStyles.body_highlight.copyWith(color: AppColors.onPrimaryDark);
-    backroundColor = AppColors.primary_3;
-    backroundColorPressed = AppColors.primary_6;
+  Widget primary({AppColor? apColor}) {
+    titleStyle = AppTextStyles.body_highlight.copyWith(color: (apColor ?? AppColors).onPrimaryDark);
+    backroundColor = (apColor ?? AppColors).primary_3;
+    backroundColorPressed = (apColor ?? AppColors).primary_6;
     return this;
   }
 
   @override
-  Widget secondary() {
-    titleStyle = AppTextStyles.body_highlight.copyWith(color: AppColors.onBackground_9);
-    backroundColor = AppColors.onBackground_1;
-    backroundColorPressed = AppColors.onBackground_3;
+  Widget secondary({AppColor? apColor}) {
+    titleStyle = AppTextStyles.body_highlight.copyWith(color: (apColor ?? AppColors).onBackground_9);
+    backroundColor = (apColor ?? AppColors).onBackground_1;
+    backroundColorPressed = (apColor ?? AppColors).onBackground_3;
     return this;
   }
 
   @override
-  Widget subtle() {
-    titleStyle = AppTextStyles.body_highlight.copyWith(color: AppColors.onBackground_9);
-    backroundColor = AppColors.background;
-    backroundColorPressed = AppColors.onBackground_1;
+  Widget subtle({AppColor? apColor}) {
+    titleStyle = AppTextStyles.body_highlight.copyWith(color: (apColor ?? AppColors).onBackground_9);
+    backroundColor = (apColor ?? AppColors).background;
+    backroundColorPressed = (apColor ?? AppColors).onBackground_1;
     return this;
   }
 

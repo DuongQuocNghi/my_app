@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/local/local.dart';
 
-enum ControllerStyle { light, dart }
 var openLogApp = 0;
 
 class NavigationBarView extends StatelessWidget {
   const NavigationBarView({super.key,
-    this.controllerStyle = ControllerStyle.light,
     this.titleText,
     this.titleWidget,
     this.backgroundColor,
@@ -25,7 +24,6 @@ class NavigationBarView extends StatelessWidget {
   final String? titleText;
   final Color? backgroundColor;
   final DecorationImage? backgroundImage;
-  final ControllerStyle controllerStyle;
   final List<Widget>? actionRight;
   final List<Widget>? actionLeft;
   final List<Widget>? bottomView;
@@ -36,7 +34,7 @@ class NavigationBarView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-          color: backgroundColor ?? (controllerStyle == ControllerStyle.light ? Colors.white : Colors.black),
+          color: backgroundColor ?? AppColors.background,
           image: backgroundImage,
         ),
         child: Padding(
@@ -69,7 +67,7 @@ class NavigationBarView extends StatelessWidget {
                       IconButton(
                         padding: EdgeInsets.zero,
                         icon: Icon(iconBack ?? Icons.arrow_back_ios,
-                          color: controllerStyle == ControllerStyle.light ? Colors.black : Colors.white,
+                          color: AppColors.onBackground_9,
                           size: 20,
                         ),
                         onPressed: () {
@@ -100,7 +98,7 @@ class NavigationBarView extends StatelessWidget {
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
-                            color: controllerStyle == ControllerStyle.light ? Colors.black : Colors.white
+                            color: AppColors.onBackground_9
                           ),
                         )
                     ),

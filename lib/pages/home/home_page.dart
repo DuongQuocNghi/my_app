@@ -90,6 +90,11 @@ class _HomePageState extends State<HomePage> {
             _buildItem(title: AppLocalizations.of(context)?.deep_linking ?? '', onTap: (){
               Navigator.of(context).push(DeepLinkingPage.route()).then((v)=> setState(() {}));
             }),
+            _buildItem(title: 'Quét QR',),
+            _buildItem(title: 'Quét barcode',),
+            _buildItem(title: 'Lưu danh bạ',),
+            _buildItem(title: 'Bản đồ chỉ đường',),
+            _buildItem(title: 'Bản đồ quy hoạch',),
           ],
         ),
       ),

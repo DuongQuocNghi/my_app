@@ -9,6 +9,7 @@ import 'package:my_app/pages/change_language/bloc/change_language_bloc.dart';
 import 'package:my_app/pages/change_language/bloc/change_language_event.dart';
 import 'package:my_app/pages/change_language/bloc/change_language_state.dart';
 
+// https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization
 class ChangeLanguagePage extends StatefulWidget {
   static Route route() {
     return MaterialPageRoute(builder: (context) => const ChangeLanguagePage());

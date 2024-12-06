@@ -5,6 +5,7 @@ import 'package:my_app/commons/views/navigation_bar_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:my_app/local/local.dart';
 import 'package:my_app/pages/change_language/change_language_page.dart';
+import 'package:my_app/pages/change_theme/change_theme_page.dart';
 import 'package:my_app/pages/home/bloc/home_bloc.dart';
 import 'package:my_app/pages/home/bloc/home_event.dart';
 import 'package:my_app/pages/home/bloc/home_state.dart';
@@ -81,7 +82,9 @@ class _HomePageState extends State<HomePage> {
             _buildItem(title: AppLocalizations.of(context)?.change_language ?? '', onTap: (){
               Navigator.of(context).push(ChangeLanguagePage.route()).then((v)=> setState(() {}));
             }),
-            _buildItem(title: AppLocalizations.of(context)?.change_theme ?? '',),
+            _buildItem(title: AppLocalizations.of(context)?.change_theme ?? '', onTap: (){
+              Navigator.of(context).push(ChangeThemePage.route()).then((v)=> setState(() {}));
+            }),
           ],
         ),
       ),

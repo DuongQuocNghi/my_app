@@ -71,7 +71,10 @@ class _DeepLinkingPageState extends State<DeepLinkingPage> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Text(widget.data ?? ''),
+            const Text('Android: https://example.com/details/123 (link demo)'),
+            const Text('IOS: Create and host apple-app-site-association JSON file'),
+            // https://docs.flutter.dev/cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file
+            Text('Data deep linking: ${widget.data ?? ''}'),
           ],
         ),
       ),

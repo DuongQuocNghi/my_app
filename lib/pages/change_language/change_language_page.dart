@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_app/commons/supports/alert.dart';
 import 'package:my_app/commons/views/button.dart';
 import 'package:my_app/commons/views/navigation_bar_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -79,10 +80,26 @@ class _ChangeLanguagePageState extends State<ChangeLanguagePage> {
                   AppButton(
                     title: AppLocalizations.of(context)?.language_app,
                     onPressed: (){
-                      setState(() {
-                        // AppLanguage = 'vi';
-                        AppLanguage = 'en';
-                      });
+                      AppAlert.showPopupMenuBottom(
+                        context,
+                        items: [
+                          MenuBottom(
+                              title: lookupAppLocalizations(const Locale('vi')).language_app,
+                              data: 'vi'
+                          ),
+                          MenuBottom(
+                              title: lookupAppLocalizations(const Locale('en')).language_app,
+                              data: 'en'
+                          ),
+                        ],
+                        onPressed:(value) {
+                          var data = value['data'];
+                          setState(() {
+                            AppLanguage = data;
+                          });
+                          Local.dataLocal.saveLanguage(data);
+                        }
+                      );
                     },
                   ).outline()
                 ],

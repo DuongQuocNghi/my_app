@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:my_app/local/local.dart';
 import 'package:my_app/pages/home/home_page.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 

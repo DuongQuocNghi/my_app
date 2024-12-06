@@ -26,9 +26,11 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     Local.dataLocal.getLanguage().then((v){
-      setState(() {
-        AppLanguage = v ?? 'vi';
-      });
+      if(v!=null && AppLanguage != v){
+        setState(() {
+          AppLanguage = v;
+        });
+      }
     });
   }
 

@@ -40,6 +40,7 @@ class _ChangeThemePageState extends State<ChangeThemePage> {
       child: BlocProvider(
         create: (_) => ChangeThemeBloc()..add(ChangeThemeInitial()),
         child: Scaffold(
+          backgroundColor: Colors.teal,
           body: BlocBuilder<ChangeThemeBloc, ChangeThemeState>(
             builder: (context, state) {
               return Column(

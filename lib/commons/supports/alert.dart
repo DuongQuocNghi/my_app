@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:my_app/commons/views/button.dart';
+import 'package:my_app/local/local.dart';
 
 class AppAlert{
   static void showWarningToast(String msg, {Toast toastLength = Toast.LENGTH_SHORT}) {
@@ -39,7 +40,7 @@ class AppAlert{
                     child: ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(16)),
                       child: Container(
-                        color: Colors.white,
+                        color: AppColors.onBackground_1,
                         child: ListView(
                           shrinkWrap: true,
                           children: items.map(
@@ -48,7 +49,7 @@ class AppAlert{
                                   ListTile(
                                     leading: e.icon,
                                     title: Text(e.title ?? '', style: TextStyle(
-                                        color: e.color
+                                        color: e.color ?? AppColors.onBackground_9
                                     ),),
                                     onTap: () {
                                       Navigator.pop(context);
@@ -59,7 +60,7 @@ class AppAlert{
                                     },
                                   ),
                                   if(e != items.last)
-                                    Container(height: 1, color: Colors.grey.shade200,),
+                                    Container(height: 1, color: AppColors.onBackground_3,),
                                 ],
                               )
                           ).toList(),
@@ -84,7 +85,7 @@ class AppAlert{
 }
 
 class MenuBottom<K>{
-  MenuBottom({this.icon, this.title, this.data, this.color = Colors.black});
+  MenuBottom({this.icon, this.title, this.data, this.color});
   final Widget? icon;
   final String? title;
   final K? data;

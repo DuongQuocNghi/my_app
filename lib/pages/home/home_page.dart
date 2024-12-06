@@ -48,6 +48,7 @@ class _HomePageState extends State<HomePage> {
       child: BlocProvider(
         create: (_) => HomeBloc()..add(HomeInitial()),
         child: Scaffold(
+          backgroundColor: AppColors.background,
           body: BlocBuilder<HomeBloc, HomeState>(
             builder: (context, state) {
               return Column(
@@ -99,7 +100,7 @@ class _HomePageState extends State<HomePage> {
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.onBackground_2,
               borderRadius: BorderRadius.circular(8)
           ),
           child: Padding(
@@ -107,8 +108,8 @@ class _HomePageState extends State<HomePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(title),
-                const Icon(Icons.arrow_forward_ios, size: 16,),
+                Text(title, style: TextStyle(color: AppColors.onBackground_9),),
+                Icon(Icons.arrow_forward_ios, size: 16,color: AppColors.onBackground_9),
               ],
             ),
           ),

@@ -40,6 +40,7 @@ class _ChangeLanguagePageState extends State<ChangeLanguagePage> {
       child: BlocProvider(
         create: (_) => ChangeLanguageBloc()..add(ChangeLanguageInitial()),
         child: Scaffold(
+          backgroundColor: AppColors.background,
           body: BlocBuilder<ChangeLanguageBloc, ChangeLanguageState>(
             builder: (context, state) {
               return Column(
@@ -76,7 +77,7 @@ class _ChangeLanguagePageState extends State<ChangeLanguagePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(AppLocalizations.of(context)?.language ?? ''),
+                  Text(AppLocalizations.of(context)?.language ?? '', style: TextStyle(color: AppColors.onBackground_9),),
                   AppButton(
                     title: AppLocalizations.of(context)?.language_app,
                     onPressed: (){

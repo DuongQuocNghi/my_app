@@ -122,7 +122,7 @@ class NavigationBarView extends StatelessWidget {
   Widget _buildLineView(){
     return Container(
       height: 1,
-      color: Colors.grey.shade300,
+      color: AppColors.onBackground_2,
     );
   }
 

@@ -10,6 +10,7 @@ import 'package:my_app/pages/deep_linking/deep_linking_page.dart';
 import 'package:my_app/pages/home/bloc/home_bloc.dart';
 import 'package:my_app/pages/home/bloc/home_event.dart';
 import 'package:my_app/pages/home/bloc/home_state.dart';
+import 'package:my_app/pages/qr_code/qr_code_page.dart';
 
 class HomePage extends StatefulWidget {
   static Route route() {
@@ -90,7 +91,9 @@ class _HomePageState extends State<HomePage> {
             _buildItem(title: AppLocalizations.of(context)?.deep_linking ?? '', onTap: (){
               Navigator.of(context).push(DeepLinkingPage.route()).then((v)=> setState(() {}));
             }),
-            _buildItem(title: 'Quét QR',),
+            _buildItem(title: AppLocalizations.of(context)?.qr_code ?? '', onTap: (){
+              Navigator.of(context).push(QRCodePage.route()).then((v)=> setState(() {}));
+            }),
             _buildItem(title: 'Quét barcode',),
             _buildItem(title: 'Lưu danh bạ',),
             _buildItem(title: 'Bản đồ chỉ đường',),

@@ -77,7 +77,7 @@ class _QRCodePageState extends State<QRCodePage> {
             children: [
               const SizedBox(height: 16,),
               QrImageView(
-                data: 'This QR code has an embedded image as well',
+                data: 'Hello, My name is Nghi, My phone number 0902002455',
                 backgroundColor: AppColors.onPrimaryLight,
                 version: QrVersions.auto,
                 gapless: true,

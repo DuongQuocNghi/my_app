@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 abstract class AppColor {
+  static fromInteger(int) => 2;
+
   // HIGHLIGHT
   Color highlight_1 = const Color(0x00000000);
   Color highlight_2 = const Color(0x00000000);

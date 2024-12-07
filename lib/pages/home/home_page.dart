@@ -86,13 +86,13 @@ class _HomePageState extends State<HomePage> {
               Navigator.of(context).push(ChangeLanguagePage.route()).then((v)=> setState(() {}));
             }),
             _buildItem(title: AppLocalizations.of(context)?.change_theme ?? '', onTap: (){
-              Navigator.of(context).push(ChangeThemePage.route()).then((v)=> setState(() {}));
+              Navigator.of(context).push(ChangeThemePage.route());
             }),
             _buildItem(title: AppLocalizations.of(context)?.deep_linking ?? '', onTap: (){
-              Navigator.of(context).push(DeepLinkingPage.route()).then((v)=> setState(() {}));
+              Navigator.of(context).push(DeepLinkingPage.route());
             }),
             _buildItem(title: AppLocalizations.of(context)?.qr_code ?? '', onTap: (){
-              Navigator.of(context).push(QRCodePage.route()).then((v)=> setState(() {}));
+              Navigator.of(context).push(QRCodePage.route());
             }),
             _buildItem(title: 'Quét barcode',),
             _buildItem(title: 'Lưu danh bạ',),

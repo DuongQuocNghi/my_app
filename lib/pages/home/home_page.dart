@@ -12,6 +12,7 @@ import 'package:my_app/pages/home/bloc/home_bloc.dart';
 import 'package:my_app/pages/home/bloc/home_event.dart';
 import 'package:my_app/pages/home/bloc/home_state.dart';
 import 'package:my_app/pages/qr_code/qr_code_page.dart';
+import 'package:my_app/pages/save_contacts/save_contacts_page.dart';
 
 class HomePage extends StatefulWidget {
   static Route route() {
@@ -98,7 +99,9 @@ class _HomePageState extends State<HomePage> {
             _buildItem(title: AppLocalizations.of(context)?.barcode ?? '', onTap: (){
               Navigator.of(context).push(BarcodePage.route());
             }),
-            _buildItem(title: 'Lưu danh bạ',),
+            _buildItem(title: AppLocalizations.of(context)?.save_contacts ?? '', onTap: (){
+              Navigator.of(context).push(SaveContactsPage.route());
+            }),
             _buildItem(title: 'Bản đồ chỉ đường',),
             _buildItem(title: 'Bản đồ quy hoạch',),
           ],

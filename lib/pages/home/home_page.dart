@@ -4,6 +4,7 @@ import 'package:my_app/commons/supports/alert.dart';
 import 'package:my_app/commons/views/navigation_bar_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:my_app/local/local.dart';
+import 'package:my_app/pages/barcode/barcode_page.dart';
 import 'package:my_app/pages/change_language/change_language_page.dart';
 import 'package:my_app/pages/change_theme/change_theme_page.dart';
 import 'package:my_app/pages/deep_linking/deep_linking_page.dart';
@@ -94,7 +95,9 @@ class _HomePageState extends State<HomePage> {
             _buildItem(title: AppLocalizations.of(context)?.qr_code ?? '', onTap: (){
               Navigator.of(context).push(QRCodePage.route());
             }),
-            _buildItem(title: 'Quét barcode',),
+            _buildItem(title: AppLocalizations.of(context)?.barcode ?? '', onTap: (){
+              Navigator.of(context).push(BarcodePage.route());
+            }),
             _buildItem(title: 'Lưu danh bạ',),
             _buildItem(title: 'Bản đồ chỉ đường',),
             _buildItem(title: 'Bản đồ quy hoạch',),

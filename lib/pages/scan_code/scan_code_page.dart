@@ -1,24 +1,23 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/commons/views/navigation_bar_view.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class ScanQRCodePage extends StatefulWidget {
+class ScanCodePage extends StatefulWidget {
   static Route route() {
-    return MaterialPageRoute(builder: (context) => const ScanQRCodePage());
+    return MaterialPageRoute(builder: (context) => const ScanCodePage());
   }
 
-  const ScanQRCodePage({super.key});
+  const ScanCodePage({super.key});
 
   @override
-  State<StatefulWidget> createState() => _ScanQRCodePageState();
+  State<StatefulWidget> createState() => _ScanCodePageState();
 }
 
-class _ScanQRCodePageState extends State<ScanQRCodePage> {
+class _ScanCodePageState extends State<ScanCodePage> {
   Barcode? result;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');

@@ -1,6 +1,7 @@
 {
   "language_app": "Tiếng Việt",
 
+  "barcode": "Barcode",
   "scan_qr_code": "Quét QR Code",
   "qr_code": "QR code",
   "deep_linking": "Deep link mở ứng dụng",

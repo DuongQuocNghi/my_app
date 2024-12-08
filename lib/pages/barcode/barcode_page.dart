@@ -1,28 +1,28 @@
+import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_app/assets/icons.dart';
 import 'package:my_app/commons/views/button.dart';
 import 'package:my_app/commons/views/navigation_bar_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:my_app/local/local.dart';
-import 'package:my_app/pages/qr_code/bloc/qr_code_bloc.dart';
-import 'package:my_app/pages/qr_code/bloc/qr_code_event.dart';
-import 'package:my_app/pages/qr_code/bloc/qr_code_state.dart';
+import 'package:my_app/pages/barcode/bloc/barcode_bloc.dart';
+import 'package:my_app/pages/barcode/bloc/barcode_event.dart';
+import 'package:my_app/pages/barcode/bloc/barcode_state.dart';
 import 'package:my_app/pages/scan_code/scan_code_page.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
-class QRCodePage extends StatefulWidget {
+// demo: https://davbfr.github.io/dart_barcode/#/
+class BarcodePage extends StatefulWidget {
   static Route route() {
-    return MaterialPageRoute(builder: (context) => const QRCodePage());
+    return MaterialPageRoute(builder: (context) => const BarcodePage());
   }
 
-  const QRCodePage({super.key,});
+  const BarcodePage({super.key,});
 
   @override
-  State<StatefulWidget> createState() => _QRCodePageState();
+  State<StatefulWidget> createState() => _BarcodePageState();
 }
 
-class _QRCodePageState extends State<QRCodePage> {
+class _BarcodePageState extends State<BarcodePage> {
 
   @override
   void initState() {
@@ -40,10 +40,10 @@ class _QRCodePageState extends State<QRCodePage> {
       context: context,
       locale: Locale(AppLanguage),
       child: BlocProvider(
-        create: (_) => QRCodeBloc()..add(QRCodeInitial()),
+        create: (_) => BarcodeBloc()..add(BarcodeInitial()),
         child: Scaffold(
           backgroundColor: AppColors.background,
-          body: BlocBuilder<QRCodeBloc, QRCodeState>(
+          body: BlocBuilder<BarcodeBloc, BarcodeState>(
             builder: (context, state) {
               return Column(
                 children: [
@@ -58,17 +58,17 @@ class _QRCodePageState extends State<QRCodePage> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, QRCodeState state){
+  Widget _buildHeader(BuildContext context, BarcodeState state){
     return Column(
       children: [
         NavigationBarView(
-          titleText: AppLocalizations.of(context)?.qr_code,
+          titleText: AppLocalizations.of(context)?.barcode,
         ),
       ],
     );
   }
 
-  Widget _buildBody(BuildContext context, QRCodeState state){
+  Widget _buildBody(BuildContext context, BarcodeState state){
     return Expanded(
       child: SingleChildScrollView(
         child: Padding(
@@ -76,15 +76,9 @@ class _QRCodePageState extends State<QRCodePage> {
           child: Column(
             children: [
               const SizedBox(height: 16,),
-              QrImageView(
-                data: 'Hello, My name is Nghi, My phone number 0902002455',
-                backgroundColor: AppColors.onPrimaryLight,
-                version: QrVersions.auto,
-                gapless: true,
-                embeddedImage: AppIcons.logo_aiai_dark.iconAssetImage(),
-                embeddedImageStyle: const QrEmbeddedImageStyle(
-                  size: Size(72, 72),
-                ),
+              BarcodeWidget(
+                barcode:  Barcode.code93(),
+                data: "HELLO WORLD",
               ),
               const SizedBox(height: 16,),
               AppButton(title: AppLocalizations.of(context)?.scan_qr_code,

@@ -63,7 +63,7 @@ class _DemoPageState extends State<DemoPage> {
   Widget build(BuildContext context) {
     return Localizations.override(
       context: context,
-      locale: Locale(AppLanguage),
+      locale: Locale(appLanguage),
       child: BlocProvider(
         create: (_) => DemoBloc()..add(DemoInitial()),
         child: Scaffold(

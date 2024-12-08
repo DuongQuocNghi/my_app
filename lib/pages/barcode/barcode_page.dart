@@ -38,7 +38,7 @@ class _BarcodePageState extends State<BarcodePage> {
   Widget build(BuildContext context) {
     return Localizations.override(
       context: context,
-      locale: Locale(AppLanguage),
+      locale: Locale(appLanguage),
       child: BlocProvider(
         create: (_) => BarcodeBloc()..add(BarcodeInitial()),
         child: Scaffold(

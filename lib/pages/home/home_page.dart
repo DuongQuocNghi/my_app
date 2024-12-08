@@ -31,9 +31,9 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     Local.dataLocal.getLanguage().then((v){
-      if(v!=null && AppLanguage != v){
+      if(v!=null && appLanguage != v){
         setState(() {
-          AppLanguage = v;
+          appLanguage = v;
         });
       }
     });
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Localizations.override(
       context: context,
-      locale: Locale(AppLanguage),
+      locale: Locale(appLanguage),
       child: BlocProvider(
         create: (_) => HomeBloc()..add(HomeInitial()),
         child: Scaffold(

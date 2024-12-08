@@ -34,7 +34,7 @@ class _SaveContactsPageState extends State<SaveContactsPage> {
   Widget build(BuildContext context) {
     return Localizations.override(
       context: context,
-      locale: Locale(AppLanguage),
+      locale: Locale(appLanguage),
       child: BlocProvider(
         create: (_) => SaveContactsBloc()..add(SaveContactsInitial()),
         child: Scaffold(

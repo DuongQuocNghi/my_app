@@ -38,7 +38,7 @@ class _QRCodePageState extends State<QRCodePage> {
   Widget build(BuildContext context) {
     return Localizations.override(
       context: context,
-      locale: Locale(AppLanguage),
+      locale: Locale(appLanguage),
       child: BlocProvider(
         create: (_) => QRCodeBloc()..add(QRCodeInitial()),
         child: Scaffold(

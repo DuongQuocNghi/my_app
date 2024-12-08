@@ -37,7 +37,7 @@ class _ChangeLanguagePageState extends State<ChangeLanguagePage> {
   Widget build(BuildContext context) {
     return Localizations.override(
       context: context,
-      locale: Locale(AppLanguage),
+      locale: Locale(appLanguage),
       child: BlocProvider(
         create: (_) => ChangeLanguageBloc()..add(ChangeLanguageInitial()),
         child: Scaffold(
@@ -97,7 +97,7 @@ class _ChangeLanguagePageState extends State<ChangeLanguagePage> {
                         onPressed:(value) {
                           var data = value['data'];
                           setState(() {
-                            AppLanguage = data;
+                            appLanguage = data;
                           });
                           Local.dataLocal.saveLanguage(data);
                         }

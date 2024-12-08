@@ -36,7 +36,7 @@ class _DeepLinkingPageState extends State<DeepLinkingPage> {
   Widget build(BuildContext context) {
     return Localizations.override(
       context: context,
-      locale: Locale(AppLanguage),
+      locale: Locale(appLanguage),
       child: BlocProvider(
         create: (_) => DeepLinkingBloc()..add(DeepLinkingInitial()),
         child: Scaffold(

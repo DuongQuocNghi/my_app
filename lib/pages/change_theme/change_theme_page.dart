@@ -36,7 +36,7 @@ class _ChangeThemePageState extends State<ChangeThemePage> {
   Widget build(BuildContext context) {
     return Localizations.override(
       context: context,
-      locale: Locale(AppLanguage),
+      locale: Locale(appLanguage),
       child: BlocProvider(
         create: (_) => ChangeThemeBloc()..add(ChangeThemeInitial()),
         child: Scaffold(

@@ -7,7 +7,7 @@ import 'package:my_app/pages/home/home_page.dart';
 
 void main() async {
   runApp(MaterialApp.router(
-    title: AppName,
+    title: appName,
     routerConfig: router,
     localizationsDelegates: AppLocalizations.localizationsDelegates,
     supportedLocales: AppLocalizations.supportedLocales,
